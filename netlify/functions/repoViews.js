@@ -37,7 +37,7 @@ exports.handler = async (event) => {
         const message = shortNumber(count);
 
         const params = new URLSearchParams({
-            label: 'Views',
+            label: 'Repository Views',
             logo: 'github',
             message,
             color: 'purple',
