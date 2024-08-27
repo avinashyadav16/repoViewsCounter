@@ -1,17 +1,19 @@
 const fs = require('fs').promises;
 const path = require('path');
+const fetch = require('node-fetch');
 
 exports.handler = async (event) => {
-    const { file } = event.queryStringParameters;
+    const { repo } = event.queryStringParameters;
 
-    if (!file) {
+    if (!repo) {
         return {
             statusCode: 400,
-            body: 'Missing file parameter',
+            body: 'Missing repo parameter',
         };
     }
 
-    const filePath = path.resolve('/tmp', `${file}.txt`);
+    const fileName = repo.replace(/[^a-z0-9]/gi, '_').toLowerCase();
+    const filePath = path.resolve('/tmp', `${fileName}.txt`);
 
     try {
         let count = 1;
