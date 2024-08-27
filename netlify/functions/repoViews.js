@@ -1,8 +1,8 @@
-const fs = require('fs').promises;
-const path = require('path');
-const fetch = require('node-fetch');
-
 exports.handler = async (event) => {
+    const fetch = (await import('node-fetch')).default;
+    const fs = require('fs').promises;
+    const path = require('path');
+
     const { repo } = event.queryStringParameters;
 
     if (!repo) {
